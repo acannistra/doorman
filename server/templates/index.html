@@ -5,7 +5,27 @@
 {% block content %}
 
 {% load tz %}
-{% localtime on %}
-It's {{ time }}
+{% localtime %}
+It's {{ time|localtime }}
 {% endlocaltime %}
+
+<table border=1>
+	{% for user in users %}
+	<tr>
+		<td>
+			<b>{{user.user.username}}</b>
+		</td>
+		<td>
+			{% if user.isPresent %} 
+				Home
+			{% else %}
+				Away (since { last check in })
+			{% endif %}
+
+		</td>
+	</tr>
+	{% endfor %}
+
+</table>	
+
 {% endblock %}
