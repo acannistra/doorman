@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import utc
 from django.views.decorators.csrf import csrf_exempt
-from dbaccess import mostRecentCheckin
+
 
 '''
 	Responsible for generating the data to send to the main page's 
