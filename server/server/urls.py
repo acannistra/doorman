@@ -5,16 +5,16 @@ from doorman import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'server.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    #
-    # base page 
+    # main information page 
     url(r'^$', views.mainpage_view, name='mainpage'),
     # user page:
     url(r'^user/(?P<user_id>\S+)/$', views.userinfo, name='userinfo'),
+    # django admin page [default]
     url(r'^admin/', include(admin.site.urls)),
+    # login endpoint, Django default
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    # logout endpoint, Django default
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
+    # checkin POST endpoint
     url(r'^checkin/$', views.checkin_view, name='checkin')
 )

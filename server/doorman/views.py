@@ -8,7 +8,14 @@ from django.utils.timezone import utc
 from django.views.decorators.csrf import csrf_exempt
 from dbaccess import mostRecentCheckin
 
+'''
+	Responsible for generating the data to send to the main page's 
+	template, including the current list of users, and in the future 
+	some aggregate statistics about the data and possibly 
+	even the makings of some plots. 
 
+	Login is required.
+'''
 
 @login_required
 def mainpage_view(request):
@@ -20,16 +27,27 @@ def mainpage_view(request):
 		 	'profiles':profiles
 		})
 
+
+'''
+	Responsible for generating data about an individual user. 
+	Must be sent a valid user_id which is the User.username field
+'''
 @login_required
 def userinfo(request, user_id):
 	user = get_object_or_404(User, username=user_id)
 
 	return render(request, "user.html", {"user":user})
 
-def logout_view(request):
+'''
+	This is the critical method for sending checkins to the system.
+	It takes a POST request only, with only 1 parameter, the RFID tag 
+	identifier (POSTed as 'rfid')
 
-	return HttpResponse('/accounts/login')
+	TODO: Make this less horribly insecure. Authentication would be nice. 
+	We could start simple with just a key of some sort, but password Authentication
+	would be most ideal.
 
+'''
 
 @csrf_exempt
 def checkin_view(request):
