@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="css/style.css"/>
+	<title>{% block title %}Doorman{% endblock %}</title>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header">
+			<h1>{% block header %}Here is the Header{% endblock %}
+		</div>
+		{% block content %}{% endblock %}
+	</div>
+</body>
