@@ -24,6 +24,7 @@ class RFIDTag(models.Model):
 class CheckIn(models.Model):
 	time     = models.DateTimeField(auto_now=False, auto_now_add=True)
 	user     = models.ForeignKey(User)
+	tag      = models.ForeignKey(RFIDTag)
 
 	def __unicode__(self):
 		return self.user.username+'@'+self.time.strftime('%x_%X')

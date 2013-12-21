@@ -31,10 +31,10 @@ def mainpage_view(request):
 	checkins = CheckIn.objects.all()
 	return render(request, "index.html", 
 		{
-			'users':serializers.serialize('json', users),
+			'users':serializers.serialize('json', profiles),
 			'time':time,
 		 	'profiles':profiles,
-		 	'checkins':serializers.serialize('json', checkins)
+		 	'checkins':checkins
 		})
 
 
@@ -65,7 +65,7 @@ def checkin_view(request):
 		rfid = request.POST['rfid'];
 		time = datetime.now();
 		dbtag = get_object_or_404(RFIDTag, tag=rfid)
-		checkin = CheckIn(time=time, user=dbtag.user)
+		checkin = CheckIn(time=time, user=dbtag.user, tag=dbtag)
 		checkin.save()
 		return HttpResponse('OK: ('+rfid+'->'+dbtag.user.username+')')
 

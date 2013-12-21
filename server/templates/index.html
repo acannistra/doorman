@@ -4,18 +4,6 @@
 
 {% block head_extra %} 
 
-	<script type="text/javascript">
-		var checkins = {{ checkins|safe }};
-		var users    = {{ users|safe }};
-
-		/* Deals with the Django time representation,
-		returns a date with same ISO time zone as ISO_string */
-		function makeDate (ISO_string) {
-			var time = new Date(ISO_string);
-			return new Date(time.getTime() + (time.getTimezoneOffset() * 60000 ));
-		}
-	</script>
-
 {% endblock %}
 
 {% block header %} Doorman Home. {% endblock %}
@@ -29,7 +17,7 @@
 	{% endlocaltime %}
 
 
-
+	<h3> Users</h3>
 	<table border=1>
 		{% for profile in profiles %}
 		<tr>
@@ -47,6 +35,24 @@
 		</tr>
 		{% endfor %}
 
+	</table>
+	<h3>CheckIns</h3>
+
+	<table border=1>
+		{% for checkin in checkins %}
+			<tr>
+				<td>
+					{{ checkin.user.username }}
+				</td>	
+				<td>
+					{{ checkin.time }}
+				</td>
+				<td>
+					{{ checkin.tag.tag }}
+				</td>
+			</tr>	
+		{% endfor %}
 	</table>	
+	<div id="chart_div"></div>
 
 {% endblock %}
