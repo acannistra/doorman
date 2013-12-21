@@ -7,7 +7,8 @@ def index(request):
 	times = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, "index.html", {"time":times})
 def userinfo(request, user_id):
-	return HttpResponse("coming")
+	user = get_object_or_404(User, handle=user_id)
+	return render(request, "user.html", {"user":user})
 
 
 
