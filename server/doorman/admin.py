@@ -1,5 +1,5 @@
 from django.contrib import admin
-from doorman.models import User
+from doorman.models import RFIDTag
 
-admin.site.register(User)
+admin.site.register(RFIDTag)
 # Register your models here.

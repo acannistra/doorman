@@ -4,5 +4,8 @@
 {% block header %} Doorman Home. {% endblock %}
 {% block content %}
 
+{% load tz %}
+{% localtime on %}
 It's {{ time }}
+{% endlocaltime %}
 {% endblock %}
