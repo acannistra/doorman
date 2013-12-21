@@ -27,6 +27,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -51,6 +52,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'server.urls'
 
 WSGI_APPLICATION = 'server.wsgi.application'
+
+TEMPLATE_DIRS = ( os.path.join(BASE_DIR, 'templates') )
 
 
 # Database
