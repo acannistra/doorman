@@ -1,31 +1,52 @@
 {% extends 'base.html' %}
 
 {% block title %} home {% endblock %}
+
+{% block head_extra %} 
+
+	<script type="text/javascript">
+		var checkins = {{ checkins|safe }};
+		var users    = {{ users|safe }};
+
+		/* Deals with the Django time representation,
+		returns a date with same ISO time zone as ISO_string */
+		function makeDate (ISO_string) {
+			var time = new Date(ISO_string);
+			return new Date(time.getTime() + (time.getTimezoneOffset() * 60000 ));
+		}
+	</script>
+
+{% endblock %}
+
 {% block header %} Doorman Home. {% endblock %}
+
+
 {% block content %}
 
-{% load tz %}
-{% localtime %}
-It's {{ time|localtime }}
-{% endlocaltime %}
+	{% load tz %}
+	{% localtime %}
+	It's {{ time|localtime }}
+	{% endlocaltime %}
 
-<table border=1>
-	{% for profile in profiles %}
-	<tr>
-		<td>
-			<b>{{profile.user.username}}</b>
-		</td>
-		<td>
-			{% if profile.isPresent %} 
-				Home
-			{% else %}
-				Away (since {{profile.recentCheckin.time}})
-			{% endif %}
 
-		</td>
-	</tr>
-	{% endfor %}
 
-</table>	
+	<table border=1>
+		{% for profile in profiles %}
+		<tr>
+			<td>
+				<b>{{profile.user.username}}</b>
+			</td>
+			<td>
+				{% if profile.isPresent %} 
+					Home
+				{% else %}
+					Away (since {{profile.recentCheckin.time}})
+				{% endif %}
+
+			</td>
+		</tr>
+		{% endfor %}
+
+	</table>	
 
 {% endblock %}

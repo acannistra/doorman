@@ -1,11 +1,17 @@
 from django.shortcuts import render, get_object_or_404, render, redirect
 from django.http import HttpResponse, Http404
+
 from doorman.models import CheckIn, User, RFIDTag, UserProfile
+
 from datetime import datetime
+from django.utils.timezone import utc
+
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.utils.timezone import utc
 from django.views.decorators.csrf import csrf_exempt
+
+from django.core import serializers
+
 
 
 '''
@@ -21,10 +27,14 @@ from django.views.decorators.csrf import csrf_exempt
 def mainpage_view(request):
 	time = datetime.now()
 	profiles = UserProfile.objects.all()
+	users    = User.objects.all()
+	checkins = CheckIn.objects.all()
 	return render(request, "index.html", 
 		{
+			'users':serializers.serialize('json', users),
 			'time':time,
-		 	'profiles':profiles
+		 	'profiles':profiles,
+		 	'checkins':serializers.serialize('json', checkins)
 		})
 
 
