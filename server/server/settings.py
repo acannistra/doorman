@@ -77,6 +77,8 @@ USE_I18N = True
 
 USE_L10N = True
 
+AUTH_PROFILE_MODULE = "doorman.UserProfile"
+
 #USE_TZ = True
 
 

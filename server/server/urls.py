@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     #
     # base page 
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.mainpage_view, name='mainpage'),
     # user page:
     url(r'^user/(?P<user_id>\S+)/$', views.userinfo, name='userinfo'),
     url(r'^admin/', include(admin.site.urls)),

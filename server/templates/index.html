@@ -10,16 +10,16 @@ It's {{ time|localtime }}
 {% endlocaltime %}
 
 <table border=1>
-	{% for user in users %}
+	{% for profile in profiles %}
 	<tr>
 		<td>
-			<b>{{user.user.username}}</b>
+			<b>{{profile.user.username}}</b>
 		</td>
 		<td>
-			{% if user.isPresent %} 
+			{% if profile.isPresent %} 
 				Home
 			{% else %}
-				Away (since { last check in })
+				Away (since {{profile.recentCheckin.time}})
 			{% endif %}
 
 		</td>
