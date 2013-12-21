@@ -12,6 +12,7 @@ from django.utils.timezone import utc
 @login_required
 def index(request):
 	times = datetime.now()
+	usersPresent = User.objects.get(isPresent=true)
 	return render(request, "index.html", {"time":times})
 
 @login_required
@@ -25,7 +26,3 @@ def logout_view(request):
 	return HttpResponse('/accounts/login')
 
 
-
-
-
-# Create your views here.
