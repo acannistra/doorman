@@ -48,6 +48,11 @@ def userinfo(request, user_id):
 
 	return render(request, "user.html", {"user":user})
 
+@login_required
+def chart(request, type):
+	# write this function
+	pass
+
 '''
 	This is the critical method for sending checkins to the system.
 	It takes a POST request only, with only 1 parameter, the RFID tag 
